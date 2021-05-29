@@ -20,17 +20,17 @@ namespace Homework_11.Entity
 
         public int ProjectsCount { get; set; } = 0;
 
-        protected Worker()
+        public Worker()
         {
 
         }
 
-        protected Worker(Department department)
+        public Worker(Department department)
         {
             Department = department;
         }
 
-        protected Worker(Department department, string lastName, string firstName, int age, int salary, int projectsCount)
+        public Worker(Department department, string lastName, string firstName, int age, int salary, int projectsCount)
         {
             Department = department;
             LastName = lastName;

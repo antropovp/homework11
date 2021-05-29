@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Homework_11.Entity;
-using Homework_11.Repository;
+using Homework_11.Entity.Children;
 using Homework_11.Repository.Implementation;
 
 namespace Homework_11.Service.Implementation
@@ -13,11 +13,56 @@ namespace Homework_11.Service.Implementation
     {
         public Worker createWorker(Department department)
         {
-            // Создаём экземпляр сотрудника
-            Worker newWorker = new Worker(department);
-
             // Переменная для получения выбора действия пользователя при работе с программой
             char choice = '0';
+
+            // Создание экземпляра сотрудника
+            Worker newWorker = new Worker(department); ;
+
+            #region Уточнение должности сотрудника
+            Console.Write("Do you want to specify the worker's position? (y/n) ");
+
+            while (choice != 'y' && choice != 'n')
+            {
+                choice = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+
+                if (choice == 'y')
+                {
+                    char choicePosition = '0';
+
+                    Console.WriteLine("1. Worker");
+                    Console.WriteLine("2. Intern");
+                    Console.WriteLine("3. Manager");
+
+                    while (choicePosition != '1' && choicePosition != '2' && choicePosition != '3')
+                    {
+                        choicePosition = Console.ReadKey().KeyChar;
+                        Console.WriteLine();
+
+                        switch (choicePosition)
+                        {
+                            case '1':
+                                newWorker = new Worker(department);
+                                break;
+                            case '2':
+                                newWorker = new Intern(department);
+                                break;
+                            case '3':
+                                newWorker = new Manager(department);
+                                break;
+                            default:
+                                Console.Write("Error. Try again: ");
+                                break;
+                        }
+                    }
+                }
+                else if (choice != 'n')
+                {
+                    Console.Write("Error. Try again: ");
+                }
+            }
+            #endregion
 
             #region Уточнение фамилии сотрудника
             Console.Write("Do you want to specify the worker's last name? (y/n) ");
