@@ -4,6 +4,12 @@ namespace Homework_11.Entity.Children
 {
     public class Manager : Worker
     {
+        public Manager() : base() { }
+
+        public Manager(Department department) : base(department) { }
+
+        public Manager(Department department, string lastName, string firstName, int age, int salary, int projectsCount) : base(department, lastName, firstName, age, salary, projectsCount) { }
+
         int SalaryFixed = 0;
         int SalaryHour = 0;
 
