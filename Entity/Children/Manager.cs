@@ -4,30 +4,25 @@ namespace Homework_11.Entity.Children
 {
     public class Manager : Worker
     {
-        int SalaryHour = 0;
         int SalaryFixed = 0;
+        int SalaryHour = 0;
 
         public new string getSalary()
         {
-            calculateSalaryHour();
-            calculateSalaryFixed();
+            calculateSalary();
             return $"{SalaryHour}/hour + {SalaryFixed} fixed";
         }
 
-        private int calculateSalaryHour()
+        private void calculateSalary()
         {
-            return 0;
-        }
-
-        private int calculateSalaryFixed()
-        {
-            int resultSalary = 0;
+            SalaryFixed = 0;
+            SalaryHour = 0;
 
             foreach (Worker worker in Department.Workers)
             {
                 if (worker.GetType() == typeof(Intern))
                 {
-                    resultSalary += worker.Salary;
+                    SalaryFixed += worker.Salary;
                 }
             }
 
@@ -37,24 +32,28 @@ namespace Homework_11.Entity.Children
                 {
                     if (worker.GetType() == typeof(Intern))
                     {
-                        resultSalary += worker.Salary;
+                        SalaryFixed += worker.Salary;
                     }
                     else if (worker.GetType() == typeof(Manager))
                     {
-                        resultSalary += ((Manager)worker).calculateSalaryFixed();
+                        ((Manager) worker).calculateSalary();
+                        SalaryFixed += ((Manager)worker).SalaryFixed;
+                        SalaryHour += ((Manager) worker).SalaryHour;
+                    }
+                    else
+                    {
+                        SalaryHour += worker.Salary;
                     }
                 }
             }
 
-            resultSalary = resultSalary * 15 / 100;
+            SalaryFixed = SalaryFixed * 15 / 100;
+            SalaryHour = SalaryHour * 15 / 100;
 
-            if (resultSalary < 1300)
+            if (SalaryFixed < 1300)
             {
-                resultSalary = 1300;
+                SalaryFixed = 1300;
             }
-
-            SalaryFixed = resultSalary;
-            return resultSalary;
         }
     }
 }
