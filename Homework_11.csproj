@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Converter\DepartmentListConverterJson.cs" />
     <Compile Include="Converter\DepartmentConverterJson.cs" />
+    <Compile Include="Entity\Children\Intern.cs" />
+    <Compile Include="Entity\Children\Manager.cs" />
     <Compile Include="Entity\Worker.cs" />
     <Compile Include="IOrganizationApp.cs" />
     <Compile Include="OrganizationApp.cs" />

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
-using Homework_11.Converter;
-using Homework_11.Repository;
-using Homework_11.Repository.Implementation;
-using Newtonsoft.Json;
+﻿using Homework_11.Repository.Implementation;
 
 namespace Homework_11.Entity
 {
@@ -14,7 +9,7 @@ namespace Homework_11.Entity
     {
         //[JsonConverter(typeof(DepartmentConverterJson<Department>))]
         public Department Department { get; set; }
-        
+
         public string LastName { get; set; } = "Undefined";
 
         public string FirstName { get; set; } = "Undefined";
@@ -25,17 +20,17 @@ namespace Homework_11.Entity
 
         public int ProjectsCount { get; set; } = 0;
 
-        public Worker()
+        protected Worker()
         {
 
         }
 
-        public Worker(Department department)
+        protected Worker(Department department)
         {
             Department = department;
         }
 
-        public Worker(Department department, string lastName, string firstName, int age, int salary, int projectsCount)
+        protected Worker(Department department, string lastName, string firstName, int age, int salary, int projectsCount)
         {
             Department = department;
             LastName = lastName;
@@ -43,6 +38,11 @@ namespace Homework_11.Entity
             Age = age;
             Salary = salary;
             ProjectsCount = projectsCount;
+        }
+
+        public string getSalary()
+        {
+            return Salary + "/hour";
         }
 
         public override string ToString()
