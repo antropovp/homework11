@@ -53,6 +53,7 @@
     <Compile Include="Entity\Children\Intern.cs" />
     <Compile Include="Entity\Children\Manager.cs" />
     <Compile Include="Entity\Worker.cs" />
+    <Compile Include="Enum\Position.cs" />
     <Compile Include="IOrganizationApp.cs" />
     <Compile Include="OrganizationApp.cs" />
     <Compile Include="Program.cs" />

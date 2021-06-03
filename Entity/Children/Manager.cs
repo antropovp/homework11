@@ -1,9 +1,12 @@
-﻿using Homework_11.Repository.Implementation;
+﻿using Homework_11.Enum;
+using Homework_11.Repository.Implementation;
 
 namespace Homework_11.Entity.Children
 {
     public class Manager : Worker
     {
+        public override Position Position => Position.MANAGER;
+
         public Manager() : base() { }
 
         public Manager(Department department) : base(department) { }
@@ -13,7 +16,7 @@ namespace Homework_11.Entity.Children
         int SalaryFixed = 0;
         int SalaryHour = 0;
 
-        public new string getSalary()
+        public override string getSalary()
         {
             calculateSalary();
             return $"{SalaryHour}/hour + {SalaryFixed} fixed";

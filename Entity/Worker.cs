@@ -1,4 +1,5 @@
-﻿using Homework_11.Repository.Implementation;
+﻿using Homework_11.Enum;
+using Homework_11.Repository.Implementation;
 
 namespace Homework_11.Entity
 {
@@ -9,10 +10,12 @@ namespace Homework_11.Entity
     {
         //[JsonConverter(typeof(DepartmentConverterJson<Department>))]
         public Department Department { get; set; }
+        
+        public virtual Position Position => Position.WORKER;
 
-        public string LastName { get; set; } = "Undefined";
+        public string LastName { get; set; } = "UNDEFINED";
 
-        public string FirstName { get; set; } = "Undefined";
+        public string FirstName { get; set; } = "UNDEFINED";
 
         public int Age { get; set; } = 0;
 
@@ -40,17 +43,18 @@ namespace Homework_11.Entity
             ProjectsCount = projectsCount;
         }
 
-        public string getSalary()
+        public virtual string getSalary()
         {
             return Salary + "/hour";
         }
 
         public override string ToString()
         {
-            string result = $"Last name: {LastName}\n";
-            result += $"First name: {FirstName}\n";
+            string result = $"Position: {Position}\n";
+            result += $"Last name: {LastName.ToUpper()}\n";
+            result += $"First name: {FirstName.ToUpper()}\n";
             result += $"Age: {Age}\n";
-            result += $"Salary: {Salary}\n";
+            result += $"Salary: {getSalary()}\n";
             result += $"ProjectsCount: {ProjectsCount}";
 
             return result;

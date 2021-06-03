@@ -18,7 +18,7 @@ namespace Homework_11.Repository.Implementation
         /// </summary>
         //[JsonConverter(typeof(DepartmentConverterJson<Department>))]
         public Department ParentDepartment { get; set; }
-        public string Name { get; set; } = "Undefined";
+        public string Name { get; set; } = "UNDEFINED";
         public DateTime DateOfCreation { get; set; } = DateTime.Now;
         public List<Worker> Workers { get; set; }
         
@@ -27,7 +27,7 @@ namespace Homework_11.Repository.Implementation
 
         public Department()
         {
-            Name = "Head department";
+            Name = "HEAD DEPARTMENT";
         }
 
         public Department(Department parentDepartment)
@@ -302,7 +302,7 @@ namespace Homework_11.Repository.Implementation
 
         public override string ToString()
         {
-            string result = $"Name: {Name}\n";
+            string result = $"Name: {Name.ToUpper()}\n";
             result += $"Date of creation: {DateOfCreation}\n";
             result += $"Number of workers: {Workers.Count}\n";
             result += $"Number of nested departments: {Departments.Count}";
