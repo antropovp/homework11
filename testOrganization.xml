@@ -7,7 +7,7 @@
       <LastName>Antropov</LastName>
       <FirstName>Pavel</FirstName>
       <Age>22</Age>
-      <Salary>1</Salary>
+      <Salary>30</Salary>
       <ProjectsCount>1</ProjectsCount>
     </Worker>
   </Workers>
@@ -20,21 +20,21 @@
           <LastName>Pichai</LastName>
           <FirstName>Sundar</FirstName>
           <Age>48</Age>
-          <Salary>1000000</Salary>
+          <Salary>100</Salary>
           <ProjectsCount>100</ProjectsCount>
         </Worker>
         <Worker>
           <LastName>Buterin</LastName>
           <FirstName>Vitalik</FirstName>
           <Age>27</Age>
-          <Salary>100000</Salary>
+          <Salary>50</Salary>
           <ProjectsCount>1</ProjectsCount>
         </Worker>
         <Worker>
           <LastName>Test</LastName>
           <FirstName>Test</FirstName>
           <Age>99</Age>
-          <Salary>200000</Salary>
+          <Salary>150</Salary>
           <ProjectsCount>150</ProjectsCount>
         </Worker>
       </Workers>
@@ -47,7 +47,7 @@
               <LastName>Zuckerberg</LastName>
               <FirstName>Mark</FirstName>
               <Age>36</Age>
-              <Salary>1000000</Salary>
+              <Salary>75</Salary>
               <ProjectsCount>100</ProjectsCount>
             </Worker>
           </Workers>
@@ -63,7 +63,7 @@
           <LastName>Undefined</LastName>
           <FirstName>Lenochka</FirstName>
           <Age>24</Age>
-          <Salary>20000</Salary>
+          <Salary>12</Salary>
           <ProjectsCount>0</ProjectsCount>
         </Worker>
       </Workers>

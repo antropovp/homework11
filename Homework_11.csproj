@@ -70,7 +70,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="testOrganization.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="testOrganization.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -130,26 +130,31 @@ namespace Homework_11.Service.Implementation
             }
             #endregion
 
-            #region Уточнение зарплаты сотрудника
-            Console.Write("Do you want to specify the worker's salary? (y/n) ");
+            #region Уточнение зарплаты сотрудника (если не менеджер)
 
-            choice = '0';
-
-            while (choice != 'y' && choice != 'n')
+            if (newWorker.GetType() != typeof(Manager))
             {
-                choice = Console.ReadKey().KeyChar;
-                Console.WriteLine();
+                Console.Write("Do you want to specify the worker's salary? (y/n) ");
 
-                if (choice == 'y')
+                choice = '0';
+
+                while (choice != 'y' && choice != 'n')
                 {
-                    Console.Write("Type the salary: ");
-                    newWorker.Salary = Convert.ToInt32(Console.ReadLine());
-                }
-                else if (choice != 'n')
-                {
-                    Console.Write("Error. Try again: ");
+                    choice = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+
+                    if (choice == 'y')
+                    {
+                        Console.Write("Type the salary: ");
+                        newWorker.Salary = Convert.ToInt32(Console.ReadLine());
+                    }
+                    else if (choice != 'n')
+                    {
+                        Console.Write("Error. Try again: ");
+                    }
                 }
             }
+
             #endregion
 
             #region Уточнение количества проектов сотрудника

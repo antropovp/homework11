@@ -35,8 +35,8 @@ namespace Homework_11
             try
             {
                 // Загрузка тестовой организации из файла
-                headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
-                //headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
+                //headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
+                headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
                 Console.WriteLine("Test organization uploaded.\n");
             }
             catch (Exception e)
