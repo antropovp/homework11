@@ -1,6 +1,5 @@
 ﻿using System;
 using Homework_11.Entity;
-using Homework_11.Repository;
 using Homework_11.Repository.Implementation;
 using Homework_11.Service;
 using Homework_11.Service.Implementation;
@@ -35,8 +34,8 @@ namespace Homework_11
             try
             {
                 // Загрузка тестовой организации из файла
-                //headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
-                headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
+                headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
+                // headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
                 Console.WriteLine("Test organization uploaded.\n");
             }
             catch (Exception e)

@@ -1,4 +1,6 @@
-﻿using Homework_11.Enum;
+﻿using System.Xml.Serialization;
+using Homework_11.Entity.Children;
+using Homework_11.Enum;
 using Homework_11.Repository.Implementation;
 
 namespace Homework_11.Entity
@@ -6,6 +8,8 @@ namespace Homework_11.Entity
     /// <summary>
     /// Сотрудник
     /// </summary>
+    [XmlInclude(typeof(Manager))]
+    [XmlInclude(typeof(Intern))]
     public class Worker
     {
         //[JsonConverter(typeof(DepartmentConverterJson<Department>))]

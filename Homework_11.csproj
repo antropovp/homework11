@@ -75,5 +75,6 @@
   <ItemGroup>
     <Content Include="testOrganization.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
-using Homework_11.Repository;
 using Homework_11.Repository.Implementation;
 using Newtonsoft.Json;
 
@@ -22,13 +19,11 @@ namespace Homework_11.Service.Implementation
             {
                 try
                 {
-                    // Не работало
                     using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                     {
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(Department));
                         organization = (Department)xmlSerializer.Deserialize(fileStream);
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -55,7 +50,10 @@ namespace Homework_11.Service.Implementation
             // Если файл существует, десериализуем содержимое в виде экземпляра организации
             try
             {
-                organization = JsonConvert.DeserializeObject<Department>(File.ReadAllText(filePath));
+                organization = JsonConvert.DeserializeObject<Department>(File.ReadAllText(filePath), new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
             }
             catch (Exception e)
             {
@@ -75,27 +73,11 @@ namespace Homework_11.Service.Implementation
             // Создаём файл и помещаем в него сериализованный экземпляр организации
             try
             {
-                // Не работало
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(typeof(Department));
                     xmlSerializer.Serialize(fileStream, headDepartment);
                 }
-
-                // Работало только так
-                //
-                // // Сериализуем в JSON формат
-                // string json = JsonConvert.SerializeObject(headDepartment, new JsonSerializerSettings
-                // {
-                //     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                // });
-                //
-                // // Конвертируем в XML и записываем в файл
-                // XDocument xml = JsonConvert.DeserializeXNode(json, "Department");
-                // using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-                // {
-                //     xml.Save(fileStream);
-                // }
             }
             catch (Exception e)
             {
@@ -115,7 +97,8 @@ namespace Homework_11.Service.Implementation
             {
                 File.WriteAllText(filePath,JsonConvert.SerializeObject(headDepartment, new JsonSerializerSettings
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    TypeNameHandling = TypeNameHandling.All
                 }));
             }
             catch (Exception e)

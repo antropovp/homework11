@@ -10,6 +10,13 @@
       <Salary>30</Salary>
       <ProjectsCount>1</ProjectsCount>
     </Worker>
+    <Worker xsi:type="Intern">
+      <LastName>Intern</LastName>
+      <FirstName>Test</FirstName>
+      <Age>18</Age>
+      <Salary>250</Salary>
+      <ProjectsCount>1</ProjectsCount>
+    </Worker>
   </Workers>
   <Departments>
     <Department>
