@@ -60,7 +60,6 @@
     </ApplicationDefinition>
     <Compile Include="IOrganizationApp.cs" />
     <Compile Include="OrganizationApp.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Repository\IDepartment.cs" />
     <Compile Include="Repository\Implementation\Department.cs" />
     <Compile Include="Service\IDepartmentService.cs" />
@@ -118,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="testOrganization.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Task.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
