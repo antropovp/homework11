@@ -58,8 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="IOrganizationApp.cs" />
-    <Compile Include="OrganizationApp.cs" />
     <Compile Include="Repository\IDepartment.cs" />
     <Compile Include="Repository\Implementation\Department.cs" />
     <Compile Include="Service\IDepartmentService.cs" />
@@ -119,7 +117,7 @@
     <Resource Include="testOrganization.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Task.txt" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="BtnRefresh" Grid.Column="0" Content="Обновить"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="125" Height="28" Margin="0 200 0 0"
+                FontSize="14"/>
+
+        <TreeView x:Name="TreeView" Grid.Column="1"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15 15">
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Margin="5" BorderThickness="1" CornerRadius="10">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Name}" Margin="0" FontSize="18"/>
+                            <TextBlock Text="{Binding DateOfCreation}" Margin="10 0" FontSize="10" Foreground="Gray" TextAlignment="Right"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
     </Grid>
 </Window>
