@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homework_11"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Loaded="MainWindow_OnLoaded"
+        Title="Организация" Height="400" Width="640" MinWidth="480" MinHeight="400">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <ComboBox x:Name="ChoiceBox"
+                  HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="40"  Margin="0 35 0 0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" Margin="0" FontSize="14"/>
+                            <TextBlock Text="{Binding DateOfCreation}" Margin="0 0" FontSize="10" Foreground="Gray" TextAlignment="Right"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- <TextBlock x:Name="TargetSend"  -->
+            <!--            Text="{Binding ElementName=logList, Path=SelectedItem.Id}" -->
+            <!--            Visibility="Collapsed" -->
+            <!--            Margin="5"/> -->
+
+            <Grid Margin="0 180 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="0" x:Name="WorkerCreationBtn" Click="WorkerCreationBtnClick" Content="Создать сотрудника"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 0 0 0"
+                        FontSize="14"/>
+
+                <Button Grid.Row="1" x:Name="RefreshBtn" Click="RefreshBtnClick" Content="Обновить"
+                        HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 10 0 0"
+                        FontSize="14"/>
+            </Grid>
+
+        </StackPanel>
+
+        <TreeView x:Name="TreeView" Grid.Column="1"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 15 15 15">
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Margin="0 10 0 0" BorderThickness="0.5" CornerRadius="3">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Name}" Margin="0" FontSize="18"/>
+                            <TextBlock Text="{Binding DateOfCreation}" Margin="0" FontSize="10" Foreground="Gray" TextAlignment="Right"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
     </Grid>
 </Window>
