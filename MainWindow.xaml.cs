@@ -40,6 +40,12 @@ namespace Homework_11
 
         private bool isProgramOpened = true;
 
+        /*
+         * Other windows
+         */
+
+        private readonly WorkerCreation workerCreationWindow = new WorkerCreation();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,8 +53,9 @@ namespace Homework_11
             try
             {
                 // Загрузка тестовой организации из файла
-                // headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
-                headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
+                headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
+                // headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
+                int check = headDepartment.Departments.Count;
                 // Console.WriteLine("Test organization uploaded.\n");
             }
             catch (Exception e)
@@ -56,12 +63,25 @@ namespace Homework_11
                 Console.WriteLine(e.Message);
             }
 
-            TreeView.ItemsSource = headDepartment.Departments;
+            TreeView.ItemsSource = headDepartment;
+
+            ChoiceBox.ItemsSource = headDepartment.Departments;
         }
 
-        public void Refresh(object sender, RoutedEventArgs e)
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //
+        }
+
+        public void RefreshBtnClick(object sender, RoutedEventArgs e)
         {
             TreeView.Items.Refresh();
+            ChoiceBox.Items.Refresh();
+        }
+
+        public void WorkerCreationBtnClick(object sender, RoutedEventArgs e)
+        {
+            workerCreationWindow.Show();
         }
 
 
