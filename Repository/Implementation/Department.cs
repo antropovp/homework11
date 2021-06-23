@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
 using Homework_11.Converter;
 using Homework_11.Entity;
+using Homework_11.Enumerator;
 using Newtonsoft.Json;
 
 namespace Homework_11.Repository.Implementation
@@ -11,7 +14,7 @@ namespace Homework_11.Repository.Implementation
     /// <summary>
     /// Департамент
     /// </summary>
-    public class Department : IDepartment
+    public class Department : IDepartment, IEnumerable
     {
         /// <summary>
         /// Родительский департамент
@@ -308,6 +311,21 @@ namespace Homework_11.Repository.Implementation
             result += $"Number of nested departments: {Departments.Count}";
 
             return result;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        
+        public DepartmentEnumerator GetEnumerator()
+        {
+            return new DepartmentEnumerator(Departments);
+        }
+
+        public void Add(Department department)
+        {
+            Departments.Add(department);
         }
     }
 }
