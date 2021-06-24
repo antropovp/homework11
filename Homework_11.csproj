@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enumerator\DepartmentEnumerator.cs" />
     <Compile Include="Repository\IDepartment.cs" />
     <Compile Include="Repository\Implementation\Department.cs" />
     <Compile Include="Service\IDepartmentService.cs" />
@@ -67,8 +66,8 @@
     <Compile Include="Service\Implementation\FileService.cs" />
     <Compile Include="Service\Implementation\WorkerService.cs" />
     <Compile Include="Service\IWorkerService.cs" />
-    <Compile Include="WorkerCreation.xaml.cs">
-      <DependentUpon>WorkerCreation.xaml</DependentUpon>
+    <Compile Include="WorkerCreationWindow.xaml.cs">
+      <DependentUpon>WorkerCreationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -88,7 +87,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WorkerCreation.xaml">
+    <Page Include="WorkerCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,17 +115,22 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="testOrganization.json" />
+    <None Include="resources\data\testOrganization.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="testOrganization.xml" />
+    <Resource Include="resources\data\testOrganization.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="resources\img\department.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\img\worker.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

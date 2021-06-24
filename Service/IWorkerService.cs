@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Homework_11.Entity;
 using Homework_11.Repository;
 using Homework_11.Repository.Implementation;
@@ -33,7 +34,7 @@ namespace Homework_11.Service
         /// </summary>
         /// <param name="department">Департамент</param>
         /// <param name="workers">Список сотрудников</param>
-        void deleteWorkers(Department department, List<Worker> workers);
+        void deleteWorkers(Department department, ObservableCollection<Worker> workers);
 
         /// <summary>
         /// Удаление сотрудников по фамилии

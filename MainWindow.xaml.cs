@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Homework_11.Entity;
+using Homework_11.Repository;
 using Homework_11.Repository.Implementation;
 using Homework_11.Service;
 using Homework_11.Service.Implementation;
@@ -32,19 +21,13 @@ namespace Homework_11
         /// <summary>
         /// Главный департамент
         /// </summary>
-        private Department headDepartment = new Department();
+        public static Department headDepartment = new Department();
 
         private readonly IDepartmentService departmentService = new DepartmentService();
         private readonly IWorkerService workerService = new WorkerService();
         private readonly FileService fileService = new FileService();
 
         private bool isProgramOpened = true;
-
-        /*
-         * Other windows
-         */
-
-        private readonly WorkerCreation workerCreationWindow = new WorkerCreation();
 
         public MainWindow()
         {
@@ -53,9 +36,8 @@ namespace Homework_11
             try
             {
                 // Загрузка тестовой организации из файла
-                headDepartment = fileService.readOrganizationFromXMLFile("../../testOrganization.xml");
-                // headDepartment = fileService.readOrganizationFromJSONFile("../../testOrganization.json");
-                int check = headDepartment.Departments.Count;
+                headDepartment = fileService.readOrganizationFromXMLFile("../../resources/data/testOrganization.xml");
+                // headDepartment = fileService.readOrganizationFromJSONFile("../../resources/data/testOrganization.json");
                 // Console.WriteLine("Test organization uploaded.\n");
             }
             catch (Exception e)
@@ -63,7 +45,7 @@ namespace Homework_11
                 Console.WriteLine(e.Message);
             }
 
-            TreeView.ItemsSource = headDepartment;
+            OrganizationTreeView.ItemsSource = headDepartment.Entities;
 
             ChoiceBox.ItemsSource = headDepartment.Departments;
         }
@@ -75,12 +57,13 @@ namespace Homework_11
 
         public void RefreshBtnClick(object sender, RoutedEventArgs e)
         {
-            TreeView.Items.Refresh();
+            OrganizationTreeView.Items.Refresh();
             ChoiceBox.Items.Refresh();
         }
 
         public void WorkerCreationBtnClick(object sender, RoutedEventArgs e)
         {
+            WorkerCreationWindow workerCreationWindow = new WorkerCreationWindow {Owner = this};
             workerCreationWindow.Show();
         }
 

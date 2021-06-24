@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Xml.Serialization;
 using Homework_11.Converter;
 using Homework_11.Entity;
@@ -14,7 +15,7 @@ namespace Homework_11.Repository.Implementation
     /// <summary>
     /// Департамент
     /// </summary>
-    public class Department : IDepartment, IEnumerable
+    public class Department : IDepartment
     {
         /// <summary>
         /// Родительский департамент
@@ -23,10 +24,17 @@ namespace Homework_11.Repository.Implementation
         public Department ParentDepartment { get; set; }
         public string Name { get; set; } = "UNDEFINED";
         public DateTime DateOfCreation { get; set; } = DateTime.Now;
-        public List<Worker> Workers { get; set; }
+        public ObservableCollection<Worker> Workers { get; set; }
         
         //[JsonConverter(typeof(DepartmentListConverterJson<Department>))]
         public List<Department> Departments { get; set; }
+
+        public IList Entities =>
+            new CompositeCollection()
+            {
+                new CollectionContainer() { Collection = Departments },
+                new CollectionContainer() { Collection = Workers }
+            };
 
         public Department()
         {
@@ -38,7 +46,7 @@ namespace Homework_11.Repository.Implementation
             ParentDepartment = parentDepartment;
         }
 
-        public Department(Department parentDepartment, string name, List<Worker> workers, List<Department> departments)
+        public Department(Department parentDepartment, string name, ObservableCollection<Worker> workers, List<Department> departments)
         {
             ParentDepartment = parentDepartment;
             Name = name;
@@ -65,7 +73,7 @@ namespace Homework_11.Repository.Implementation
             Departments.Add(department);
         }
 
-        public void add(List<Worker> workers)
+        public void add(ObservableCollection<Worker> workers)
         {
             foreach (Worker worker in workers)
             {
@@ -87,27 +95,27 @@ namespace Homework_11.Repository.Implementation
 
         public void sortWorkersByLastName()
         {
-            Workers = Workers.OrderBy(o => o.LastName).ToList();
+            Workers = new ObservableCollection<Worker>(Workers.OrderBy(o => o.LastName));
         }
 
         public void sortWorkersByFirstName()
         {
-            Workers = Workers.OrderBy(o => o.FirstName).ToList();
+            Workers = new ObservableCollection<Worker>(Workers.OrderBy(o => o.FirstName).ToList());
         }
 
         public void sortWorkersByAge()
         {
-            Workers = Workers.OrderBy(o => o.Age).ToList();
+            Workers = new ObservableCollection<Worker>(Workers.OrderBy(o => o.Age).ToList());
         }
 
         public void sortWorkersBySalary()
         {
-            Workers = Workers.OrderBy(o => o.Salary).ToList();
+            Workers = new ObservableCollection<Worker>(Workers.OrderBy(o => o.Salary).ToList());
         }
 
         public void sortWorkersByProjectsCount()
         {
-            Workers = Workers.OrderBy(o => o.ProjectsCount).ToList();
+            Workers = new ObservableCollection<Worker>(Workers.OrderBy(o => o.ProjectsCount).ToList());
         }
 
         /*
@@ -133,10 +141,10 @@ namespace Homework_11.Repository.Implementation
          * Нахождение сотрудников
          */
 
-        public List<Worker> findWorkersByLastName(string lastName)
+        public ObservableCollection<Worker> findWorkersByLastName(string lastName)
         {
             // Массив подошедших под условие сотрудников
-            List<Worker> matchWorkers = new List<Worker>();
+            ObservableCollection<Worker> matchWorkers = new ObservableCollection<Worker>();
 
             // Если фамилия сотрудника совпадает с указанной, добавляем этого сотрудника в массив
             foreach (Worker worker in Workers)
@@ -150,10 +158,10 @@ namespace Homework_11.Repository.Implementation
             return matchWorkers;
         }
 
-        public List<Worker> findWorkersByFirstName(string firstName)
+        public ObservableCollection<Worker> findWorkersByFirstName(string firstName)
         {
             // Массив подошедших под условие сотрудников
-            List<Worker> matchWorkers = new List<Worker>();
+            ObservableCollection<Worker> matchWorkers = new ObservableCollection<Worker>();
 
             // Если имя сотрудника совпадает с указанным, добавляем этого сотрудника в массив
             foreach (Worker worker in Workers)
@@ -167,10 +175,10 @@ namespace Homework_11.Repository.Implementation
             return matchWorkers;
         }
 
-        public List<Worker> findWorkersByAge(int age)
+        public ObservableCollection<Worker> findWorkersByAge(int age)
         {
             // Массив подошедших под условие сотрудников
-            List<Worker> matchWorkers = new List<Worker>();
+            ObservableCollection<Worker> matchWorkers = new ObservableCollection<Worker>();
 
             // Если возраст сотрудника совпадает с указанным, добавляем этого сотрудника в массив
             foreach (Worker worker in Workers)
@@ -184,10 +192,10 @@ namespace Homework_11.Repository.Implementation
             return matchWorkers;
         }
 
-        public List<Worker> findWorkersBySalary(int salary)
+        public ObservableCollection<Worker> findWorkersBySalary(int salary)
         {
             // Массив подошедших под условие сотрудников
-            List<Worker> matchWorkers = new List<Worker>();
+            ObservableCollection<Worker> matchWorkers = new ObservableCollection<Worker>();
 
             // Если зарплата сотрудника совпадает с указанной, добавляем этого сотрудника в массив
             foreach (Worker worker in Workers)
@@ -201,10 +209,10 @@ namespace Homework_11.Repository.Implementation
             return matchWorkers;
         }
 
-        public List<Worker> findWorkersByProjectsCount(int projectsCount)
+        public ObservableCollection<Worker> findWorkersByProjectsCount(int projectsCount)
         {
             // Массив подошедших под условие сотрудников
-            List<Worker> matchWorkers = new List<Worker>();
+            ObservableCollection<Worker> matchWorkers = new ObservableCollection<Worker>();
 
             // Если количество проектов сотрудника совпадает с указанным, добавляем этого сотрудника в массив
             foreach (Worker worker in Workers)
@@ -287,7 +295,7 @@ namespace Homework_11.Repository.Implementation
             Departments.Remove(department);
         }
 
-        public void remove(List<Worker> workers)
+        public void remove(ObservableCollection<Worker> workers)
         {
             foreach (Worker worker in workers)
             {
@@ -311,21 +319,6 @@ namespace Homework_11.Repository.Implementation
             result += $"Number of nested departments: {Departments.Count}";
 
             return result;
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-        
-        public DepartmentEnumerator GetEnumerator()
-        {
-            return new DepartmentEnumerator(Departments);
-        }
-
-        public void Add(Department department)
-        {
-            Departments.Add(department);
         }
     }
 }
