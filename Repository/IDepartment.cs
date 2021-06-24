@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 using Homework_11.Entity;
 using Homework_11.Repository.Implementation;
@@ -24,7 +25,7 @@ namespace Homework_11.Repository
         /// <summary>
         /// Список работников
         /// </summary>
-        List<Worker> Workers { get; set; }
+        ObservableCollection<Worker> Workers { get; set; }
 
         /// <summary>
         /// Список вложенных департаментов
@@ -51,7 +52,7 @@ namespace Homework_11.Repository
         /// Добавление списка сотрудников
         /// </summary>
         /// <param name="workers">Список сотрудников</param>
-        void add(List<Worker> workers);
+        void add(ObservableCollection<Worker> workers);
 
         /// <summary>
         /// Добавление списка вложенных департаментов
@@ -116,35 +117,35 @@ namespace Homework_11.Repository
         /// </summary>
         /// <param name="lastName">Фамилия</param>
         /// <returns></returns>
-        List<Worker> findWorkersByLastName(string lastName);
+        ObservableCollection<Worker> findWorkersByLastName(string lastName);
 
         /// <summary>
         /// Нахождение сотрудников по имени
         /// </summary>
         /// <param name="firstName">Имя</param>
         /// <returns></returns>
-        List<Worker> findWorkersByFirstName(string firstName);
+        ObservableCollection<Worker> findWorkersByFirstName(string firstName);
 
         /// <summary>
         /// Нахождение сотрудников по возрасту
         /// </summary>
         /// <param name="age">Возраст</param>
         /// <returns></returns>
-        List<Worker> findWorkersByAge(int age);
+        ObservableCollection<Worker> findWorkersByAge(int age);
 
         /// <summary>
         /// Нахождение сотрудников по зарплате
         /// </summary>
         /// <param name="salary">Зарплата</param>
         /// <returns></returns>
-        List<Worker> findWorkersBySalary(int salary);
+        ObservableCollection<Worker> findWorkersBySalary(int salary);
 
         /// <summary>
         /// Нахождение сотрудников по количеству проектов
         /// </summary>
         /// <param name="projectsCount">Количество проектов</param>
         /// <returns></returns>
-        List<Worker> findWorkersByProjectsCount(int projectsCount);
+        ObservableCollection<Worker> findWorkersByProjectsCount(int projectsCount);
 
         /*
          * Нахождение вложенных департаментов
@@ -191,7 +192,7 @@ namespace Homework_11.Repository
         /// Удаление списка сотрудников из департамента
         /// </summary>
         /// <param name="workers">Список сотрудников</param>
-        void remove(List<Worker> workers);
+        void remove(ObservableCollection<Worker> workers);
 
         /// <summary>
         /// Удаление списка вложенных департаментов из департамента
