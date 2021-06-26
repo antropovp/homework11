@@ -1,0 +1,43 @@
+﻿<Window x:Class="Homework_11.LoadOrganizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework_11"
+        mc:Ignorable="d"
+        Title="Загрузить организацию" Height="150" Width="600" MinHeight="130" MinWidth="480">
+    <StackPanel VerticalAlignment="Center">
+        <Grid Margin="20 0 20 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MaxWidth="90" MinWidth="90"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="FilePathBox" Text="..\..\resources\data" Grid.Column="0" Grid.Row="0"
+                     HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 0"
+                     Padding="8 0" FontSize="12" VerticalContentAlignment="Center"
+            />
+
+            <Button x:Name="BrowseDirectoryBtn" Click="BrowseDirectoryBtn_Click" Content="Обзор"
+                    Grid.Column="1" Grid.Row="0"
+                    HorizontalAlignment="Right" Width="80" Height="30" Margin="10 0 0 0"
+                    FontSize="13"/>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
+                <Button x:Name="LoadAsXMLBtn" Click="LoadAsXMLBtn_Click" Content="Загрузить из XML"
+                        Width="160" Height="30" Margin="0 0 10 0"
+                        FontSize="13"/>
+
+                <Button x:Name="LoadAsJSONBtn" Click="LoadAsJSONBtn_Click" Content="Загрузить из JSON"
+                        Width="160" Height="30" Margin="10 0 0 0"
+                        FontSize="13"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Window>

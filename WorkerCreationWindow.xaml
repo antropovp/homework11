@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Homework_11"
         xmlns:implementation="clr-namespace:Homework_11.Repository.Implementation"
         mc:Ignorable="d"
-        Title="Создание сотрудника" Height="480" Width="240" MinHeight="450" MinWidth="200">
-    <Grid>
-
-        <StackPanel VerticalAlignment="Center">
-            <ComboBox x:Name="WorkerDepartmentBox"
-                      HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="40"  Margin="0 0 0 0">
+        Title="Создание сотрудника" Height="580" Width="240" MinHeight="580" MinWidth="200">
+    <StackPanel VerticalAlignment="Center">
+        
+        <StackPanel Width="160">
+            <Label Content="Департамент:" HorizontalAlignment="Left" FontSize="12"/>
+            <ComboBox x:Name="WorkerDepartmentBox" VerticalContentAlignment="Center" Height="40">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type implementation:Department}">
                         <StackPanel>
@@ -21,39 +21,50 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-
-            <ComboBox x:Name="WorkerPositionBox"
-                      HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"/>
-
-            <TextBox x:Name="WorkerLastNameBox" TextWrapping="Wrap" Text="Last name"
-                     HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"
-                     Padding="8 0" FontSize="14" VerticalContentAlignment="Center"
-            />
-
-            <TextBox x:Name="WorkerFirstNameBox" TextWrapping="Wrap" Text="First name"
-                     HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"
-                     Padding="8 0" FontSize="14" VerticalContentAlignment="Center"
-            />
-
-            <TextBox x:Name="WorkerAgeBox" TextWrapping="Wrap" Text="Age"
-                     HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"
-                     Padding="8 0" FontSize="14" VerticalContentAlignment="Center"
-            />
-
-            <TextBox x:Name="WorkerSalaryBox" TextWrapping="Wrap" Text="Salary"
-                     HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"
-                     Padding="8 0" FontSize="14" VerticalContentAlignment="Center"
-            />
-
-            <TextBox x:Name="WorkerProjectsCountBox" TextWrapping="Wrap" Text="Projects count"
-                     HorizontalAlignment="Center" VerticalAlignment="Top" Width="160" Height="30" Margin="0 20 0 0"
-                     Padding="8 0" FontSize="14" VerticalContentAlignment="Center"
-            />
-
-            <Button x:Name="CreateWorkerBtn" Click="CreateWorkerBtnClick" Content="Создать"
-                    HorizontalAlignment="Center" VerticalAlignment="Top" Width="140" Height="30" Margin="0 30 0 0"
-                    FontSize="14"/>
         </StackPanel>
 
-    </Grid>
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Должность:" HorizontalAlignment="Left" FontSize="12"/>
+            <ComboBox x:Name="WorkerPositionBox" VerticalContentAlignment="Center" Height="30" />
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Фамилия:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="WorkerLastNameBox" TextWrapping="Wrap"
+                     Height="30" Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Имя:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="WorkerFirstNameBox" TextWrapping="Wrap"
+                     Height="30" Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Возраст:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="WorkerAgeBox" TextWrapping="Wrap" PreviewTextInput="ValidateInput"
+                     Height="30" Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Зарплата:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="WorkerSalaryBox" TextWrapping="Wrap" PreviewTextInput="ValidateInput"
+                     Height="30" Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Количество проектов:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="WorkerProjectsCountBox" TextWrapping="Wrap" PreviewTextInput="ValidateInput"
+                     Height="30" Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <Button x:Name="CreateWorkerBtn" Click="CreateWorkerBtn_Click" Content="Создать"
+                Width="140" Height="30" Margin="0 25 0 10"
+                FontSize="14"/>
+    </StackPanel>
 </Window>

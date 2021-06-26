@@ -15,7 +15,12 @@ namespace Homework_11.Entity.Children
 
         public override string getSalary()
         {
-            return Salary + " fixed";
+            return Salary + " фикс";
+        }
+
+        public override string getPosition()
+        {
+            return "Интерн";
         }
     }
 }

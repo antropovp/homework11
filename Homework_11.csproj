@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,13 +34,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=3.0.0.0, Culture=neutral, PublicKeyToken=66aa232afad40158, processorArchitecture=MSIL">
+      <HintPath>packages\Ookii.Dialogs.Wpf.3.1.0\lib\net45\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,12 +68,20 @@
     </ApplicationDefinition>
     <Compile Include="Repository\IDepartment.cs" />
     <Compile Include="Repository\Implementation\Department.cs" />
-    <Compile Include="Service\IDepartmentService.cs" />
+    <Compile Include="LoadOrganizationWindow.xaml.cs">
+      <DependentUpon>LoadOrganizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveOrganizationWindow.xaml.cs">
+      <DependentUpon>SaveOrganizationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\IFileService.cs" />
-    <Compile Include="Service\Implementation\DepartmentService.cs" />
     <Compile Include="Service\Implementation\FileService.cs" />
-    <Compile Include="Service\Implementation\WorkerService.cs" />
-    <Compile Include="Service\IWorkerService.cs" />
+    <Compile Include="DepartmentCreationWindow.xaml.cs">
+      <DependentUpon>DepartmentCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SortWindow.xaml.cs">
+      <DependentUpon>SortWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkerCreationWindow.xaml.cs">
       <DependentUpon>WorkerCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -87,6 +103,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="DepartmentCreationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadOrganizationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SaveOrganizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WorkerCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

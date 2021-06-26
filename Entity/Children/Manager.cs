@@ -19,7 +19,12 @@ namespace Homework_11.Entity.Children
         public override string getSalary()
         {
             calculateSalary();
-            return $"{SalaryHour}/hour + {SalaryFixed} fixed";
+            return $"{SalaryHour}/час + {SalaryFixed} фикс";
+        }
+
+        public override string getPosition()
+        {
+            return "Менеджер";
         }
 
         private void calculateSalary()
