@@ -23,6 +23,7 @@ namespace Homework_11
         /// Главный департамент
         /// </summary>
         public static Department headDepartment = new();
+        public Department headDepartment = new();
 
         private readonly FileService fileService = new();
 
@@ -52,12 +53,50 @@ namespace Homework_11
         public void WorkerCreationBtn_Click(object sender, RoutedEventArgs e)
         {
             WorkerCreationWindow workerCreationWindow = new WorkerCreationWindow {Owner = this};
+
+            if (OrganizationTreeView.SelectedItem != null && OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
+            {
+                Department chosenDepartment = (Department)OrganizationTreeView.SelectedItem;
+
+                workerCreationWindow.WorkerDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
+            }
+            else
+            {
+                if (headDepartment.Departments.Count != 0)
+                {
+                    workerCreationWindow.WorkerDepartmentBox.ItemsSource = headDepartment.Departments;
+                }
+                else
+                {
+                    workerCreationWindow.WorkerDepartmentBox.Items.Add(headDepartment);
+                }
+            }
+
             workerCreationWindow.Show();
         }
 
         private void DepartmentCreationBtn_Click(object sender, RoutedEventArgs e)
         {
             DepartmentCreationWindow departmentCreationWindow = new DepartmentCreationWindow {Owner = this};
+
+            if (OrganizationTreeView.SelectedItem != null && OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
+            {
+                Department chosenDepartment = (Department)OrganizationTreeView.SelectedItem;
+
+                departmentCreationWindow.ParentDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
+            }
+            else
+            {
+                if (headDepartment.Departments.Count != 0)
+                {
+                    departmentCreationWindow.ParentDepartmentBox.ItemsSource = headDepartment.Departments;
+                }
+                else
+                {
+                    departmentCreationWindow.ParentDepartmentBox.Items.Add(headDepartment);
+                }
+            }
+
             departmentCreationWindow.Show();
         }
 

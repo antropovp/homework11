@@ -16,18 +16,11 @@ namespace Homework_11
         public DepartmentCreationWindow()
         {
             InitializeComponent();
-
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
-
-            // todo
-            // ParentDepartmentBox.ItemsSource;
         }
         
-        //TODO
         public void CreateDepartmentBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Department parentDepartment = (Department) ParentDepartmentBox.SelectionBoxItem;
-            Department parentDepartment = MainWindow.headDepartment;
+            Department parentDepartment = (Department) ParentDepartmentBox.SelectionBoxItem;
             Department newDepartment = new Department(parentDepartment) { Name = DepartmentNameBox.Text };
             parentDepartment.add(newDepartment);
 
