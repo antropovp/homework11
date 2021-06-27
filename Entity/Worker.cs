@@ -12,7 +12,6 @@ namespace Homework_11.Entity
     [XmlInclude(typeof(Intern))]
     public class Worker
     {
-        //[JsonConverter(typeof(DepartmentConverterJson<Department>))]
         public Department Department { get; set; }
         
         public virtual Position Position => Position.WORKER;
@@ -26,6 +25,12 @@ namespace Homework_11.Entity
         public int Salary { get; set; } = 0;
 
         public int ProjectsCount { get; set; } = 0;
+
+        [XmlIgnore]
+        public string SalaryText => getSalary();
+
+        [XmlIgnore]
+        public string PositionText => getPosition();
 
         public Worker()
         {
@@ -49,7 +54,12 @@ namespace Homework_11.Entity
 
         public virtual string getSalary()
         {
-            return Salary + "/hour";
+            return Salary + "/час";
+        }
+
+        public virtual string getPosition()
+        {
+            return "Рабочий";
         }
 
         public override string ToString()

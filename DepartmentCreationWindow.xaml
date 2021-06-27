@@ -1,0 +1,39 @@
+﻿<Window x:Class="Homework_11.DepartmentCreationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework_11"
+        xmlns:implementation="clr-namespace:Homework_11.Repository.Implementation"
+        mc:Ignorable="d"
+        Title="Создание департамента" Height="240" Width="240" MinHeight="220" MinWidth="200">
+    <StackPanel VerticalAlignment="Center">
+
+        <StackPanel Width="160">
+            <Label Content="Родительский департамент:" HorizontalAlignment="Left" FontSize="12"/>
+            <ComboBox x:Name="ParentDepartmentBox"
+                      Height="40">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type implementation:Department}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" Margin="0" FontSize="14"/>
+                            <TextBlock Text="{Binding DateOfCreation}" Margin="0 0" FontSize="10" Foreground="Gray" TextAlignment="Right"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Width="160" Margin="0 10 0 0">
+            <Label Content="Название:" HorizontalAlignment="Left" FontSize="12"/>
+            <TextBox x:Name="DepartmentNameBox" TextWrapping="Wrap"
+                     Height="30"
+                     Padding="8 0" FontSize="13" VerticalContentAlignment="Center"
+            />
+        </StackPanel>
+
+        <Button x:Name="CreateDepartmentBtn" Click="CreateDepartmentBtn_Click" Content="Создать"
+                HorizontalAlignment="Center" VerticalAlignment="Top" Width="140" Height="30" Margin="0 20 0 10"
+                FontSize="13"/>
+    </StackPanel>
+</Window>

@@ -30,7 +30,7 @@ namespace Homework_11.Repository
         /// <summary>
         /// Список вложенных департаментов
         /// </summary>
-        List<Department> Departments { get; set; }
+        ObservableCollection<Department> Departments { get; set; }
 
         /*
          * Добавление сотрудников/вложенных департаментов
@@ -58,7 +58,7 @@ namespace Homework_11.Repository
         /// Добавление списка вложенных департаментов
         /// </summary>
         /// <param name="departments">Список департаментов</param>
-        void add(List<Department> departments);
+        void add(ObservableCollection<Department> departments);
 
         /*
          * Сортировка сотрудников
@@ -156,21 +156,21 @@ namespace Homework_11.Repository
         /// </summary>
         /// <param name="dateOfCreation">Дата создания</param>
         /// <returns></returns>
-        List<Department> findDepartmentsByDateOfCreation(DateTime dateOfCreation);
+        ObservableCollection<Department> findDepartmentsByDateOfCreation(DateTime dateOfCreation);
 
         /// <summary>
         /// Нахождение по названию
         /// </summary>
         /// <param name="name">Название</param>
         /// <returns></returns>
-        List<Department> findDepartmentsByName(string name);
+        ObservableCollection<Department> findDepartmentsByName(string name);
 
         /// <summary>
         /// Нахождение по количеству сотрудников
         /// </summary>
         /// <param name="workersCount">Количество сотрудников</param>
         /// <returns></returns>
-        List<Department> findDepartmentsByWorkersCount(int workersCount);
+        ObservableCollection<Department> findDepartmentsByWorkersCount(int workersCount);
 
         /*
          * Удаление сотрудников/вложенных департаментов
@@ -198,6 +198,6 @@ namespace Homework_11.Repository
         /// Удаление списка вложенных департаментов из департамента
         /// </summary>
         /// <param name="departments">Список департаментов</param>
-        void remove(List<Department> departments);
+        void remove(ObservableCollection<Department> departments);
     }
 }
