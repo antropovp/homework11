@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Homework_11.Entity;
+using Homework_11.Repository.Implementation;
 using Homework_11.Service.Implementation;
 
 namespace Homework_11
@@ -11,31 +12,37 @@ namespace Homework_11
     {
         private readonly FileService fileService = new();
 
+        private readonly MainWindow mainWindow;
+
         public LoadOrganizationWindow()
         {
             InitializeComponent();
+
+            mainWindow = (MainWindow) Application.Current.MainWindow;
         }
 
-        //TODO выбор конкретного файла .xml
         public void LoadAsXMLBtn_Click(object sender, RoutedEventArgs e)
         {
-            fileService.readOrganizationFromXMLFile(FilePathBox.Text + "\\organization.xml");
+            Department loadedOrganization = fileService.readOrganizationFromXMLFile(FilePathBox.Text);
+            mainWindow.headDepartment = loadedOrganization;
+            mainWindow.Refresh();
             Close();
         }
 
-        //TODO выбор конкретного файла .json
         public void LoadAsJSONBtn_Click(object sender, RoutedEventArgs e)
         {
-            fileService.readOrganizationFromJSONFile(FilePathBox.Text + "\\organization.json");
+            Department loadedOrganization = fileService.readOrganizationFromJSONFile(FilePathBox.Text);
+            mainWindow.headDepartment = loadedOrganization;
+            mainWindow.Refresh();
             Close();
         }
 
         public void BrowseDirectoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            var dialog = new Ookii.Dialogs.Wpf.VistaOpenFileDialog();
             if (dialog.ShowDialog(this).GetValueOrDefault())
             {
-                FilePathBox.Text = dialog.SelectedPath;
+                FilePathBox.Text = dialog.FileName;
             }
         }
     }

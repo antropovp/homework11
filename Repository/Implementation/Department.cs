@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Xml.Serialization;
 using Homework_11.Entity;
+using Newtonsoft.Json;
 
 namespace Homework_11.Repository.Implementation
 {
@@ -19,10 +21,13 @@ namespace Homework_11.Repository.Implementation
         public Department ParentDepartment { get; set; }
         public string Name { get; set; } = "UNDEFINED";
         public DateTime DateOfCreation { get; set; } = DateTime.Now;
+        
         public ObservableCollection<Worker> Workers { get; set; } = new ObservableCollection<Worker>();
-
+        
         public ObservableCollection<Department> Departments { get; set; } = new ObservableCollection<Department>();
 
+        [XmlIgnore]
+        [JsonIgnore]
         public IList Entities =>
             new CompositeCollection()
             {
@@ -56,7 +61,6 @@ namespace Homework_11.Repository.Implementation
         {
             if (Workers.Count >= 1_000_000)
             {
-                Console.WriteLine("Error. The department is already full.");
                 return;
             }
             Workers.Add(worker);

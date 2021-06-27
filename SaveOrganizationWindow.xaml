@@ -18,7 +18,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="FilePathBox" Text="..\..\resources\data" Grid.Column="0" Grid.Row="0"
+            <TextBox x:Name="FilePathBox" Text="..\..\resources\data\organization.json" Grid.Column="0" Grid.Row="0"
                      HorizontalAlignment="Stretch" Height="30" Margin="0 0 0 0"
                      Padding="8 0" FontSize="12" VerticalContentAlignment="Center"
             />

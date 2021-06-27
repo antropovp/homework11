@@ -11,30 +11,33 @@ namespace Homework_11
     public partial class SaveOrganizationWindow : Window
     {
         private readonly FileService fileService = new();
+        private readonly MainWindow mainWindow;
 
         public SaveOrganizationWindow()
         {
             InitializeComponent();
+
+            mainWindow = (MainWindow) Application.Current.MainWindow;
         }
 
         public void SaveAsXMLBtn_Click(object sender, RoutedEventArgs e)
         {
-            fileService.saveOrganizationToXMLFile(FilePathBox.Text + "\\organization.xml", MainWindow.headDepartment);
+            fileService.saveOrganizationToXMLFile(FilePathBox.Text, mainWindow.headDepartment);
             Close();
         }
 
         public void SaveAsJSONBtn_Click(object sender, RoutedEventArgs e)
         {
-            fileService.saveOrganizationToJSONFile(FilePathBox.Text + "\\organization.json", MainWindow.headDepartment);
+            fileService.saveOrganizationToJSONFile(FilePathBox.Text, mainWindow.headDepartment);
             Close();
         }
 
         public void BrowseDirectoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            var dialog = new Ookii.Dialogs.Wpf.VistaSaveFileDialog();
             if (dialog.ShowDialog(this).GetValueOrDefault())
             {
-                FilePathBox.Text = dialog.SelectedPath;
+                FilePathBox.Text = dialog.FileName;
             }
         }
     }

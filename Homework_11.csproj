@@ -147,6 +147,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="resources\data\organization.json" />
     <None Include="resources\data\testOrganization.json" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\img\worker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\data\organization.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

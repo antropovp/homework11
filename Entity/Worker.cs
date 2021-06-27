@@ -26,7 +26,10 @@ namespace Homework_11.Entity
 
         public int ProjectsCount { get; set; } = 0;
 
+        [XmlIgnore]
         public string SalaryText => getSalary();
+
+        [XmlIgnore]
         public string PositionText => getPosition();
 
         public Worker()

@@ -22,7 +22,6 @@ namespace Homework_11
         /// <summary>
         /// Главный департамент
         /// </summary>
-        public static Department headDepartment = new();
         public Department headDepartment = new();
 
         private readonly FileService fileService = new();
@@ -34,7 +33,7 @@ namespace Homework_11
             try
             {
                 // Загрузка тестовой организации из файла
-                headDepartment = fileService.readOrganizationFromXMLFile("../../resources/data/testOrganization.xml");
+                // headDepartment = fileService.readOrganizationFromXMLFile("../../resources/data/testOrganization.xml");
                 // headDepartment = fileService.readOrganizationFromJSONFile("../../resources/data/testOrganization.json");
             }
             catch (Exception e)
