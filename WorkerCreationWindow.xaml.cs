@@ -7,8 +7,6 @@ using Homework_11.Entity;
 using Homework_11.Entity.Children;
 using Homework_11.Enum;
 using Homework_11.Repository.Implementation;
-using Homework_11.Service;
-using Homework_11.Service.Implementation;
 
 namespace Homework_11
 {
@@ -22,6 +20,18 @@ namespace Homework_11
         public WorkerCreationWindow()
         {
             InitializeComponent();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            if (mainWindow.OrganizationTreeView.SelectedItem != null && mainWindow.OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
+            {
+                Department chosenDepartment = (Department)mainWindow.OrganizationTreeView.SelectedItem;
+
+                WorkerDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
+            }
+            else
+            {
+                WorkerDepartmentBox.ItemsSource = mainWindow.GetAllDepartmentsIncludeSelf(mainWindow.headDepartment);
+            }
 
             WorkerPositionBox.ItemsSource = System.Enum.GetValues(typeof(Position)).Cast<Position>();
         }

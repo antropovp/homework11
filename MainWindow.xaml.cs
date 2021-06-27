@@ -1,10 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Homework_11.Entity;
 using Homework_11.Entity.Children;
 using Homework_11.Repository.Implementation;
-using Homework_11.Service;
 using Homework_11.Service.Implementation;
 
 namespace Homework_11
@@ -47,55 +46,53 @@ namespace Homework_11
         public void Refresh()
         {
             OrganizationTreeView.ItemsSource = headDepartment.Entities;
+            OrganizationTreeView.UpdateLayout();
+        }
+
+        public ObservableCollection<Department> GetAllDepartmentsIncludeSelf(Department department)
+        {
+            ObservableCollection<Department> departments = new ObservableCollection<Department> {department};
+
+            foreach (var Department in department.Departments)
+            {
+                foreach (Department DepartmentInner in GetAllDepartmentsIncludeSelf(Department))
+                {
+                    departments.Add(DepartmentInner);
+                }
+            }
+
+            return departments;
+        }
+
+        public ObservableCollection<Worker> GetAllWorkers(Department department)
+        {
+            ObservableCollection<Worker> workers = new ObservableCollection<Worker>();
+
+            foreach (Worker worker in department.Workers)
+            {
+                workers.Add(worker);
+            }
+
+            foreach (var Department in department.Departments)
+            {
+                foreach (Worker WorkerInner in GetAllWorkers(Department))
+                {
+                    workers.Add(WorkerInner);
+                }
+            }
+
+            return workers;
         }
 
         public void WorkerCreationBtn_Click(object sender, RoutedEventArgs e)
         {
             WorkerCreationWindow workerCreationWindow = new WorkerCreationWindow {Owner = this};
-
-            if (OrganizationTreeView.SelectedItem != null && OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
-            {
-                Department chosenDepartment = (Department)OrganizationTreeView.SelectedItem;
-
-                workerCreationWindow.WorkerDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
-            }
-            else
-            {
-                if (headDepartment.Departments.Count != 0)
-                {
-                    workerCreationWindow.WorkerDepartmentBox.ItemsSource = headDepartment.Departments;
-                }
-                else
-                {
-                    workerCreationWindow.WorkerDepartmentBox.Items.Add(headDepartment);
-                }
-            }
-
             workerCreationWindow.Show();
         }
 
         private void DepartmentCreationBtn_Click(object sender, RoutedEventArgs e)
         {
             DepartmentCreationWindow departmentCreationWindow = new DepartmentCreationWindow {Owner = this};
-
-            if (OrganizationTreeView.SelectedItem != null && OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
-            {
-                Department chosenDepartment = (Department)OrganizationTreeView.SelectedItem;
-
-                departmentCreationWindow.ParentDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
-            }
-            else
-            {
-                if (headDepartment.Departments.Count != 0)
-                {
-                    departmentCreationWindow.ParentDepartmentBox.ItemsSource = headDepartment.Departments;
-                }
-                else
-                {
-                    departmentCreationWindow.ParentDepartmentBox.Items.Add(headDepartment);
-                }
-            }
-
             departmentCreationWindow.Show();
         }
 
@@ -118,8 +115,32 @@ namespace Homework_11
             sortWindow.Show();
         }
 
+        public void ChangeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (OrganizationTreeView.SelectedItem == null)
+            {
+                return;
+            }
+
+            if (OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
+            {
+                DepartmentChangeWindow departmentChangeWindow = new DepartmentChangeWindow { Owner = this };
+                departmentChangeWindow.Show();
+            }
+            else if (OrganizationTreeView.SelectedItem is Worker)
+            {
+                WorkerChangeWindow workerChangeWindow = new WorkerChangeWindow { Owner = this };
+                workerChangeWindow.Show();
+            }
+        }
+
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (OrganizationTreeView.SelectedItem == null)
+            {
+                return;
+            }
+
             if (OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
             {
                 Department chosenDepartment = (Department) OrganizationTreeView.SelectedItem;

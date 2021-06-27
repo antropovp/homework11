@@ -1,4 +1,4 @@
-﻿<Window x:Class="Homework_11.WorkerCreationWindow"
+﻿<Window x:Class="Homework_11.WorkerChangeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Homework_11"
         xmlns:implementation="clr-namespace:Homework_11.Repository.Implementation"
         mc:Ignorable="d"
-        Title="Создание сотрудника" Height="580" Width="240" MinHeight="580" MinWidth="200">
+        Title="Изменение сотрудника" Height="580" Width="240" MinHeight="580" MinWidth="200">
     <StackPanel VerticalAlignment="Center">
         
         <StackPanel Width="160">
             <Label Content="Департамент:" HorizontalAlignment="Left" FontSize="12"/>
-            <ComboBox x:Name="WorkerDepartmentBox" VerticalContentAlignment="Center" Height="40" SelectedIndex="0">
+            <ComboBox x:Name="WorkerDepartmentBox" VerticalContentAlignment="Center" Height="40">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type implementation:Department}">
                         <StackPanel>
@@ -25,7 +25,7 @@
 
         <StackPanel Width="160" Margin="0 10 0 0">
             <Label Content="Должность:" HorizontalAlignment="Left" FontSize="12"/>
-            <ComboBox x:Name="WorkerPositionBox" VerticalContentAlignment="Center" Height="30" />
+            <ComboBox x:Name="WorkerPositionBox" VerticalContentAlignment="Center" Height="30" IsEnabled="False"/>
         </StackPanel>
 
         <StackPanel Width="160" Margin="0 10 0 0">
@@ -63,7 +63,7 @@
             />
         </StackPanel>
 
-        <Button x:Name="CreateWorkerBtn" Click="CreateWorkerBtn_Click" Content="Создать"
+        <Button x:Name="ChangeWorkerBtn" Click="ChangeWorkerBtn_Click" Content="Изменить"
                 Width="140" Height="30" Margin="0 25 0 10"
                 FontSize="14"/>
     </StackPanel>

@@ -1,10 +1,5 @@
-﻿using System.Linq;
-using System.Windows;
-using Homework_11.Entity;
-using Homework_11.Enum;
+﻿using System.Windows;
 using Homework_11.Repository.Implementation;
-using Homework_11.Service;
-using Homework_11.Service.Implementation;
 
 namespace Homework_11
 {
@@ -13,14 +8,42 @@ namespace Homework_11
     /// </summary>
     public partial class DepartmentCreationWindow : Window
     {
+        private readonly MainWindow mainWindow;
+
         public DepartmentCreationWindow()
         {
             InitializeComponent();
+
+            mainWindow = (MainWindow) Application.Current.MainWindow;
+
+
+            if (mainWindow.OrganizationTreeView.SelectedItem != null && mainWindow.OrganizationTreeView.SelectedItem.GetType() == typeof(Department))
+            {
+                Department chosenDepartment = (Department)mainWindow.OrganizationTreeView.SelectedItem;
+
+                ParentDepartmentBox.ItemsSource = chosenDepartment.ParentDepartment.Departments;
+            }
+            else
+            {
+                ParentDepartmentBox.ItemsSource = mainWindow.GetAllDepartmentsIncludeSelf(mainWindow.headDepartment);
+            }
+
+
         }
-        
+
         public void CreateDepartmentBtn_Click(object sender, RoutedEventArgs e)
         {
-            Department parentDepartment = (Department) ParentDepartmentBox.SelectionBoxItem;
+            Department parentDepartment;
+
+            if (ParentDepartmentBox.SelectionBoxItem.ToString() != string.Empty)
+            {
+                parentDepartment = (Department)ParentDepartmentBox.SelectionBoxItem;
+            }
+            else
+            {
+                parentDepartment = mainWindow.headDepartment;
+            }
+            
             Department newDepartment = new Department(parentDepartment) { Name = DepartmentNameBox.Text };
             parentDepartment.add(newDepartment);
 

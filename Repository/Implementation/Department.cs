@@ -64,11 +64,13 @@ namespace Homework_11.Repository.Implementation
                 return;
             }
             Workers.Add(worker);
+            worker.Department = this;
         }
 
         public void add(Department department)
         {
             Departments.Add(department);
+            department.ParentDepartment = this;
         }
 
         public void add(ObservableCollection<Worker> workers)
