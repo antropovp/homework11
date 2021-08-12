@@ -13,8 +13,8 @@ namespace Homework_11.Entity.Children
 
         public Manager(Department department, string lastName, string firstName, int age, int salary, int projectsCount) : base(department, lastName, firstName, age, salary, projectsCount) { }
 
-        int SalaryFixed = 0;
-        int SalaryHour = 0;
+        int SalaryFixed;
+        int SalaryHour;
 
         public override string getSalary()
         {
@@ -37,6 +37,10 @@ namespace Homework_11.Entity.Children
                 if (worker.GetType() == typeof(Intern))
                 {
                     SalaryFixed += worker.Salary;
+                }
+                else
+                {
+                    SalaryHour += worker.Salary;
                 }
             }
 

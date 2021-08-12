@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using Homework_11.Entity;
 using Homework_11.Entity.Children;
 using Homework_11.Repository.Implementation;
-using Homework_11.Service.Implementation;
 
 namespace Homework_11
 {
@@ -14,31 +12,13 @@ namespace Homework_11
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Путь к файлу. Если оставить пустым, программа будет спрашивать путь во время работы
-        /// </summary>
-        public static readonly string FilePath = string.Empty;
-
-        /// <summary>
         /// Главный департамент
         /// </summary>
         public Department headDepartment = new();
 
-        private readonly FileService fileService = new();
-
         public MainWindow()
         {
             InitializeComponent();
-            
-            try
-            {
-                // Загрузка тестовой организации из файла
-                // headDepartment = fileService.readOrganizationFromXMLFile("../../resources/data/testOrganization.xml");
-                // headDepartment = fileService.readOrganizationFromJSONFile("../../resources/data/testOrganization.json");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
 
             OrganizationTreeView.ItemsSource = headDepartment.Entities;
         }
